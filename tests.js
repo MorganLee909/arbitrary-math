@@ -11,6 +11,7 @@ let add = {
 
         console.log("Even length test failed");
         console.log(`Left: ${sum}, Right: ${answer}`);
+        console.log();
         return false;
     },
 
@@ -24,6 +25,7 @@ let add = {
 
         console.log("First number larger failed");
         console.log(`Left: ${sum}, Right: ${answer}`);
+        console.log();
         return false;
     },
 
@@ -37,6 +39,7 @@ let add = {
 
         console.log("Second number larger failed");
         console.log(`Left: ${sum}, Right: ${answer}`);
+        console.log();
         return false;
     },
 
@@ -48,8 +51,9 @@ let add = {
             return true;
         }
 
-        console.log("Extraneos zeroes failed");
+        console.log("Extraneous zeroes failed");
         console.log(`Left: ${sum}, Right: ${answer}`);
+        console.log();
         return false;
     },
 
@@ -63,6 +67,63 @@ let add = {
 
         console.log("Large numbers failed");
         console.log(`Left: ${sum}, Right: ${answer}`);
+        console.log();
+        return false;
+    },
+
+    oneNegative: function(){
+        let sum = math.add("-1", "10");
+        let answer = "9";
+
+        if(sum === answer){
+            return true;
+        }
+
+        console.log("One negative failed");
+        console.log(`Left: ${sum}, Right: ${answer}`);
+        console.log();
+        return false;
+    },
+
+    twoNegative: function(){
+        let sum = math.add("-10814750987490209847358092811234142981409857420", "-10");
+        let answer = "-10814750987490209847358092811234142981409857430";
+
+        if(sum === answer){
+            return true;
+        }
+
+        console.log("Two negative failed");
+        console.log(`Left: ${sum}, Right: ${answer}`);
+        console.log();
+        return false;
+    },
+
+    oneDecimal: function(){
+        let sum = math.add("1", "0.876");
+        let answer = "1.876";
+
+        if(sum === answer){
+            return true;
+        }
+
+        console.log("One decimal failed");
+        console.log(`Left: ${sum}, Right: ${answer}`);
+        console.log();
+        return false;
+    },
+
+    twoDecimalAndNegative: function(){
+        let sum = math.add("-1.8", "-0.876");
+        let answer = "-2.676";
+
+        if(sum === answer){
+            return true;
+        }
+
+        console.log("One decimal failed");
+        console.log(`Left: ${sum}, Right: ${answer}`);
+        console.log();
         return false;
     }
 }
@@ -72,3 +133,7 @@ add.firstNumberLarger();
 add.secondNumberLarger();
 add.zeroesAllOver();
 add.largeNumbers();
+add.oneNegative();
+add.twoNegative();
+add.oneDecimal();
+add.twoDecimalAndNegative();
