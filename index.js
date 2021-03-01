@@ -23,3 +23,54 @@ module.exports = {
         return answer;
     }
 }
+
+class ArbitraryNumber{
+    constructor(num){
+        this._isNegative = false;
+        this._integer = null;
+        this._decimal = null;
+
+        if(num[0] === "-"){
+            this._isNegative = true;
+            num = num.slice(1);
+        }
+
+        if(num.includes(".")){
+            num = num.split(".");
+            this._integer = num[0];
+            this._decimal = num[1];
+        }else{
+            this._integer = num;
+        }
+
+        console.log(this._isNegative);
+        console.log(this._integer);
+        console.log(this._decimal);
+    }
+
+    add(num){
+        // let answer = "";
+        // num1 = num1.padStart(num2.length, "0");
+        // num2 = num2.padStart(num1.length, "0");
+
+        // let carry = 0;
+        // for(let i = num1.length - 1; i >=0; i--){
+        //     let num = parseInt(num1[i]) + parseInt(num2[i]) + carry;
+        //     answer = (num % 10).toString() + answer;
+        //     carry = Math.floor(num / 10);
+        // }
+
+        // answer = carry.toString() + answer;
+
+        // for(let i = 0; i < answer.length; i++){
+        //     if(answer[i] !== "0"){
+        //         answer = answer.slice(i);
+        //         break;
+        //     }
+        // }
+
+        // return answer;
+    }
+}
+
+module.exports = ArbitraryNumber;
