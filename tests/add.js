@@ -1,5 +1,5 @@
-let Math = require("./index.js");
-let tester = require("./tester.js");
+let Math = require("../index.js");
+let tester = require("../tester.js");
 
 let evenLength = {
     test: "assertEquals",

@@ -7,8 +7,6 @@ tests = [{
 }]
 */
 module.exports = (tests)=>{
-    let assertEquals = (left, right) => left === right;
-
     let passed = 0;
     let failed = [];
 
@@ -17,7 +15,15 @@ module.exports = (tests)=>{
 
         switch(tests[i].test){
             case "assertEquals":
-                result = assertEquals(tests[i].left, tests[i].right);
+                result = tests[i].left === tests[i].right;
+                break;
+            case "assertTrue":
+                result = tests[i].left === true;
+                tests[i].right = true;
+                break;
+            case "assertFalse":
+                result = tests[i].left === false;
+                tests[i].right = false;
                 break;
         }
 
