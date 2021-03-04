@@ -18,6 +18,12 @@ class ArbitraryNumber{
         }
     }
 
+    greaterThan(number){
+
+
+        
+    }
+
     add(number){
         let answer = "";
 
