@@ -1,29 +1,3 @@
-module.exports = {
-    add: function(num1, num2){
-        let answer = "";
-        num1 = num1.padStart(num2.length, "0");
-        num2 = num2.padStart(num1.length, "0");
-
-        let carry = 0;
-        for(let i = num1.length - 1; i >=0; i--){
-            let num = parseInt(num1[i]) + parseInt(num2[i]) + carry;
-            answer = (num % 10).toString() + answer;
-            carry = Math.floor(num / 10);
-        }
-
-        answer = carry.toString() + answer;
-
-        for(let i = 0; i < answer.length; i++){
-            if(answer[i] !== "0"){
-                answer = answer.slice(i);
-                break;
-            }
-        }
-
-        return answer;
-    }
-}
-
 class ArbitraryNumber{
     constructor(num){
         this._isNegative = false;
@@ -42,34 +16,57 @@ class ArbitraryNumber{
         }else{
             this._integer = num;
         }
-
-        console.log(this._isNegative);
-        console.log(this._integer);
-        console.log(this._decimal);
     }
 
-    add(num){
-        // let answer = "";
-        // num1 = num1.padStart(num2.length, "0");
-        // num2 = num2.padStart(num1.length, "0");
+    add(number){
+        let answer = "";
 
-        // let carry = 0;
-        // for(let i = num1.length - 1; i >=0; i--){
-        //     let num = parseInt(num1[i]) + parseInt(num2[i]) + carry;
-        //     answer = (num % 10).toString() + answer;
-        //     carry = Math.floor(num / 10);
-        // }
+        let carry = 0;
+        let firstNumber = 0;
+        let secondNumber = 0;
 
-        // answer = carry.toString() + answer;
+        //Add up the decimals
+        if(this._decimal !== null){
+            firstNumber = this._decimal.padEnd(number.length, "0");
+            secondNumber = number.padEnd(this._decimal.length, "0");
+            for(let i = firstNumber.length-1; i >= 0; i--){
+                let num = parseInt(firstNumber[i]) + parseInt(secondNumber[i]) + carry;
+                answer = `${(num % 10).toString()}${answer}`;
+                carry = Math.floor(num / 10);
+            }
 
-        // for(let i = 0; i < answer.length; i++){
-        //     if(answer[i] !== "0"){
-        //         answer = answer.slice(i);
-        //         break;
-        //     }
-        // }
+            this._decimal = answer;
+            answer = "";
+        }
 
-        // return answer;
+        //Add up the integers
+        firstNumber = this._integer.padStart(number.length, "0");
+        secondNumber = number.padStart(this._integer.length, "0");
+        for(let i = firstNumber.length-1; i >= 0; i--){
+            let num = parseInt(firstNumber[i]) + parseInt(secondNumber[i]) + carry;
+            answer = `${(num % 10).toString()}${answer}`;
+            carry = Math.floor(num / 10);
+        }
+
+        //Remove any preceding zeroes
+        for(let i = 0; i < answer.length; i++){
+            if(answer[i] !== "0"){
+                answer = answer.slice(i);
+                break;
+            }
+        }
+
+        //Add the carry
+        this._integer = (carry !== 0) ? `${carry.toString()}${answer}` : answer;
+
+        return this;
+    }
+
+    print(){
+        let response =  this._integer;
+        if(this._decimal !== null) response = `${response}.${this._decimal}`;
+        if(this._isNegative === true) response = `-${response}`;
+        return response;
     }
 }
 
