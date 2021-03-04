@@ -43,11 +43,35 @@ let oneNegative = {
     name: "one-negative"
 };
 
+let twoNegative = {
+    test: "assertEquals",
+    left: new Math("-27484746262748492").add("-172172838374764627348").print(),
+    right: "-172200323121027375840",
+    name: "two-negative"
+};
+
+let negativeDecimal = {
+    test: "assertEquals",
+    left: new Math("-1.25").add("1.25").print(),
+    right: "0",
+    name: "negative-decimal"
+};
+
+let negativeDecimalTwo = {
+    test: "assertEquals",
+    left: new Math("-1.25").add("-1.25").print(),
+    right: "-2.5",
+    name: "negative-decimal-two"
+};
+
 tester([
     evenLength,
     firstNumberLarger,
     secondNumberLarger,
     extraneousZeroes,
     largeNumbers,
-    oneNegative
+    oneNegative,
+    twoNegative,
+    negativeDecimal,
+    negativeDecimalTwo
 ]);
